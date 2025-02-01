@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:issue/repository/dependency_injection.dart';
@@ -9,6 +10,8 @@ import 'package:shadcn_ui/shadcn_ui.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
+  await dotenv.load(fileName: ".env");
+
   DependencyInjection().init();
   // Initialize flutter binding
   WidgetsFlutterBinding.ensureInitialized();

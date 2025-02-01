@@ -4,6 +4,7 @@ import 'package:lucide_icons_flutter/lucide_icons.dart';
 class UISize {
   static const double primary = 20;
   static const double appbarHeading = 28;
+  static const double dialogHeading = 22;
 }
 
 class AppIcons {

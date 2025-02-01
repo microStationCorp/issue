@@ -26,7 +26,9 @@ class TodoService {
   }
 
   Stream<QuerySnapshot<Todo>> getTodos(String projectId) {
-    return _todoCollectionRef(projectId).snapshots();
+    return _todoCollectionRef(projectId)
+        .orderBy('createdAt', descending: false)
+        .snapshots();
   }
 
   Future<void> updateTodo(

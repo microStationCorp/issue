@@ -19,4 +19,16 @@ class Issue {
         'isSolved': isSolved,
         'createdAt': createdAt.toIso8601String(),
       };
+
+  Issue copyWith({
+    String? title,
+    DateTime? createdAt,
+    bool? isSolved,
+  }) {
+    return Issue(
+      title: title ?? this.title,
+      createdAt: createdAt ?? this.createdAt,
+      isSolved: isSolved ?? this.isSolved,
+    );
+  }
 }

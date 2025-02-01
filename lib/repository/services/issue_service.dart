@@ -25,7 +25,9 @@ class IssueService {
   }
 
   Stream<QuerySnapshot<Issue>> getIssues(String projectId) {
-    return issueCollectionRef(projectId).snapshots();
+    return issueCollectionRef(projectId)
+        .orderBy('createdAt', descending: false)
+        .snapshots();
   }
 
   Future<void> updateIssue(

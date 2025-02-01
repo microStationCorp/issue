@@ -19,4 +19,16 @@ class Todo {
         'isDone': isDone,
         'createdAt': createdAt.toIso8601String(),
       };
+
+  Todo copyWith({
+    String? title,
+    DateTime? createdAt,
+    bool? isDone,
+  }) {
+    return Todo(
+      title: title ?? this.title,
+      createdAt: createdAt ?? this.createdAt,
+      isDone: isDone ?? this.isDone,
+    );
+  }
 }

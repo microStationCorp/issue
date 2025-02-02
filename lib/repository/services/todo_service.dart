@@ -42,4 +42,13 @@ class TodoService {
       errorSnackBar("Error", "Something went wrong");
     }
   }
+
+  Future<void> deleteTodo(String projectId, String todoId) async {
+    try {
+      await _todoCollectionRef(projectId).doc(todoId).delete();
+      successSnackBar("Attention !", "Todo deleted succesfully");
+    } on FirebaseException catch (e) {
+      errorSnackBar("Error", "Something went wrong");
+    }
+  }
 }

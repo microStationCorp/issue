@@ -20,6 +20,7 @@ class StreamIssueBuilder extends StatelessWidget {
       getStream: () => _issueService.getIssues(projectId),
       updateItem: _issueService.updateIssue,
       getStatus: (issue) => issue.isSolved,
+      deleteItem: _issueService.deleteIssue,
       copyWithStatus: (issue, value) => issue.copyWith(isSolved: value),
     );
   }
@@ -38,6 +39,7 @@ class StreamTodoBuilder extends StatelessWidget {
       getStream: () => _todoService.getTodos(projectId),
       updateItem: _todoService.updateTodo,
       getStatus: (todo) => todo.isDone,
+      deleteItem: _todoService.deleteTodo,
       copyWithStatus: (todo, value) => todo.copyWith(isDone: value),
     );
   }

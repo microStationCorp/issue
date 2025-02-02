@@ -9,6 +9,7 @@ class StreamListBuilder<T> extends StatelessWidget {
   final Stream<QuerySnapshot> Function() getStream;
   final Future<void> Function(T item, String projectId, String docId)
       updateItem;
+  final Future<void> Function(String projectId, String issueId) deleteItem;
   final bool Function(T) getStatus;
   final T Function(T, bool) copyWithStatus;
   final String projectId;
@@ -20,6 +21,7 @@ class StreamListBuilder<T> extends StatelessWidget {
     required this.getStatus,
     required this.projectId,
     required this.copyWithStatus,
+    required this.deleteItem,
   });
 
   @override
@@ -61,6 +63,33 @@ class StreamListBuilder<T> extends StatelessWidget {
                     ),
                   ),
                 ),
+                onLongPress: () {
+                  showShadDialog(
+                    context: context,
+                    builder: (context) => ShadDialog.alert(
+                      title: const Text('Are you sure?'),
+                      description: const Padding(
+                        padding: EdgeInsets.only(bottom: 8),
+                        child: Text(
+                          'This action cannot be undone. This will permanently delete your project and remove your data from our servers.',
+                        ),
+                      ),
+                      actions: [
+                        ShadButton.outline(
+                          child: const Text('Cancel'),
+                          onPressed: () => Navigator.of(context).pop(false),
+                        ),
+                        ShadButton(
+                          child: const Text('Continue'),
+                          onPressed: () {
+                            deleteItem(projectId, doc.id);
+                            Navigator.of(context).pop(true);
+                          },
+                        ),
+                      ],
+                    ),
+                  );
+                },
               ),
             );
           },

@@ -42,39 +42,33 @@ class StreamProjectBuilder extends StatelessWidget {
                   onTap: () {
                     Get.to(() => ProjectScreen(projectId: project.id));
                   },
-                  trailing: IconButton(
-                    onPressed: () {
-                      showShadDialog(
-                        context: context,
-                        builder: (context) => ShadDialog.alert(
-                          title: const Text('Are you sure?'),
-                          description: const Padding(
-                            padding: EdgeInsets.only(bottom: 8),
-                            child: Text(
-                              'This action cannot be undone. This will permanently delete your project and remove your data from our servers.',
-                            ),
+                  onLongPress: () {
+                    showShadDialog(
+                      context: context,
+                      builder: (context) => ShadDialog.alert(
+                        title: const Text('Are you sure?'),
+                        description: const Padding(
+                          padding: EdgeInsets.only(bottom: 8),
+                          child: Text(
+                            'This action cannot be undone. This will permanently delete your project and remove your data from our servers.',
                           ),
-                          actions: [
-                            ShadButton.outline(
-                              child: const Text('Cancel'),
-                              onPressed: () => Navigator.of(context).pop(false),
-                            ),
-                            ShadButton(
-                              child: const Text('Continue'),
-                              onPressed: () {
-                                _projectService.deleteProject(project.id);
-                                Navigator.of(context).pop(true);
-                              },
-                            ),
-                          ],
                         ),
-                      );
-                    },
-                    icon: Icon(
-                      AppIcons.delete,
-                      size: UISize.primary,
-                    ),
-                  ),
+                        actions: [
+                          ShadButton.outline(
+                            child: const Text('Cancel'),
+                            onPressed: () => Navigator.of(context).pop(false),
+                          ),
+                          ShadButton(
+                            child: const Text('Continue'),
+                            onPressed: () {
+                              _projectService.deleteProject(project.id);
+                              Navigator.of(context).pop(true);
+                            },
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
               );
             },

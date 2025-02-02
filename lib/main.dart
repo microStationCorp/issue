@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ShadApp.custom(
       appBuilder: (context, theme) => GetMaterialApp(
-        title: 'Flutter Demo',
+        title: 'Chitpur',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           useMaterial3: true,

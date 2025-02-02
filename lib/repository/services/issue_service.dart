@@ -41,4 +41,13 @@ class IssueService {
       errorSnackBar("Error", "Something went wrong");
     }
   }
+
+  Future<void> deleteIssue(String projectId, String issueId) async {
+    try {
+      await issueCollectionRef(projectId).doc(issueId).delete();
+      successSnackBar("Attention !", "Issue deleted succesfully");
+    } on FirebaseException catch (e) {
+      errorSnackBar("Error", "Something went wrong");
+    }
+  }
 }
